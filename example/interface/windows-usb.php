@@ -1,6 +1,7 @@
 <?php
 /* Change to the correct path if you copy this example! */
 require __DIR__ . '/../../vendor/autoload.php';
+
 use Mike42\Escpos\Printer;
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
 
@@ -19,16 +20,17 @@ use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
  */
 try {
     // Enter the share name for your USB printer here
-    $connector = null;
-    //$connector = new WindowsPrintConnector("Receipt Printer");
-
+    // $connector = null;
+    $connector = new WindowsPrintConnector("alimstudio");
+    // $connector = new WindowsPrintConnector("Canon iP2700 series");
+    // $connector = new FilePrintConnector("php://stdout");
     /* Print a "Hello world" receipt" */
     $printer = new Printer($connector);
-    $printer -> text("Hello World!\n");
-    $printer -> cut();
-    
+    $printer->text("Hello World!\n");
+    $printer->cut();
+
     /* Close printer */
-    $printer -> close();
+    $printer->close();
 } catch (Exception $e) {
-    echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+    echo "Couldn't print to this printer: " . $e->getMessage() . "\n";
 }
